@@ -1,20 +1,43 @@
 # PowerUp⚡
 
-A new Flutter project.
+Flutter project making top up in game currency.
 
-## Getting Started
+## Overview
 
-This project is a starting point for a Flutter application.
+"PowerUp" is a Flutter-based application that my team and I are developing as part of our Project-Based Learning (PJBL) assignment at school. It is designed to streamline the process of topping up in-game currency. "PowerUp" provides a seamless, user-friendly interface that makes the process of purchasing in-game currency quick, effortless, and safety.
 
-A few resources to get you started if this is your first Flutter project:
+The application is currently in the front-end development stage. The application is designed to be cross-platform (Coming Soon).
 
-- [Lab: Write your first Flutter app](https://docs.flutter.dev/get-started/codelab)
-- [Cookbook: Useful Flutter samples](https://docs.flutter.dev/cookbook)
+In the upcoming phase, "PowerUp" will integrate with Firebase for back-end services.
 
-For help getting started with Flutter development, view the
-[online documentation](https://docs.flutter.dev/), which offers tutorials,
-samples, guidance on mobile development, and a full API reference.
-
-# Progression
+## Progression
 
 ![Commit 2nd](</github/Screenshot%20(2nd%20Commit).png> "Commit 2nd")
+
+## TO-DO
+
+### Front-end
+
+- [ ] Authentication Page
+  - [ ] Login Page
+  - [ ] Registration Page
+  - [ ] Forgot Password Page
+  - [ ] Change Password Page
+- [ ] Home Page
+- [ ] Payment Page
+
+### Back-end
+
+- (Coming Soon)
+
+## Teams
+
+- [Abdul Aziz](https://github.com/jhokam) as a Project Manager
+- [Akmal Muhammad](https://github.com/akmmp241) as a Lead Developer Team
+  - [Aziz Fatih](https://github.com/azizfa07) as a Front-end Developer
+  - [Rafli Nur](https://github.com/raafly) as a Back-end Developer
+- [Bagas Bassamalah](https://github.com/lBagas) as a Lead Designer Team
+  - [Fattah Arif](https://github.com/fattah26) as a Designer
+- [Yulia Dela] as a Lead Researcher Team
+  - [Xenalya Keiza] as a Researcher 1
+  - [Naela Zahrotul] as a Researcher 2
