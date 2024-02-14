@@ -24,10 +24,11 @@ library;
 
 import 'dart:ui';
 
+import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_svg/svg.dart';
-import 'package:google_fonts/google_fonts.dart';
 import 'package:powerup/pages/base_background.dart';
+import 'package:powerup/pages/forgot_password_page.dart';
+import 'package:powerup/pages/registration_page.dart';
 import 'package:powerup/style.dart';
 
 class LoginPage extends StatefulWidget {
@@ -40,6 +41,15 @@ class LoginPage extends StatefulWidget {
 class _LoginPageState extends State<LoginPage> {
   // Check if showing password or not (if true = hide else = show)
   bool _isObscure = true;
+
+  // Check if the mouse is hovering over the button
+  bool _isHovering = false;
+
+  // Check if the button is clicked
+  bool _isClicked = false;
+
+  final FocusNode _emailFocusNode = FocusNode();
+  final FocusNode _passwordFocusNode = FocusNode();
 
   @override
   Widget build(BuildContext context) {
@@ -71,11 +81,14 @@ class _LoginPageState extends State<LoginPage> {
                             child: Text('Email', style: heading3)),
                         TextFormField(
                             keyboardType: TextInputType.emailAddress,
-                            style: GoogleFonts.plusJakartaSans(
-                                textStyle: const TextStyle(color: textColor),
-                                fontSize: 14.0,
-                                fontWeight: FontWeight.w500),
+                            style: heading3,
+                            focusNode: _emailFocusNode,
                             decoration: InputDecoration(
+                                focusedBorder: OutlineInputBorder(
+                                    borderRadius: BorderRadius.circular(8.0),
+                                    borderSide: const BorderSide(
+                                        width: 2.0, color: primaryColor)),
+                                focusColor: primaryColor,
                                 contentPadding: const EdgeInsets.symmetric(
                                     horizontal: 20.0),
                                 enabledBorder: OutlineInputBorder(
@@ -92,20 +105,30 @@ class _LoginPageState extends State<LoginPage> {
                                     MainAxisAlignment.spaceBetween,
                                 children: [
                                   Text('Kata Sandi', style: heading3),
-                                  Text('Lupa Kata Sandi?',
-                                      style:
-                                          linkText4) // TODO : Add navigation to Forgot Password Page
+                                  RichText(
+                                      text: TextSpan(
+                                          text: 'Lupa Kata Sandi?',
+                                          style: linkText4,
+                                          recognizer: TapGestureRecognizer()
+                                            ..onTap = () => Navigator.push(
+                                                context,
+                                                MaterialPageRoute(
+                                                    builder: (context) =>
+                                                        const ForgotPasswordPage()))))
                                 ])),
                         TextFormField(
                             enableSuggestions: false,
                             autocorrect: false,
                             obscureText: _isObscure,
                             obscuringCharacter: '•',
-                            style: GoogleFonts.plusJakartaSans(
-                                textStyle: const TextStyle(color: textColor),
-                                fontSize: 14.0,
-                                fontWeight: FontWeight.w500),
+                            style: heading3,
+                            focusNode: _passwordFocusNode,
                             decoration: InputDecoration(
+                                focusedBorder: OutlineInputBorder(
+                                    borderRadius: BorderRadius.circular(8.0),
+                                    borderSide: const BorderSide(
+                                        width: 2.0, color: primaryColor)),
+                                focusColor: primaryColor,
                                 contentPadding: const EdgeInsets.symmetric(
                                     horizontal: 20.0),
                                 enabledBorder: OutlineInputBorder(
@@ -135,22 +158,31 @@ class _LoginPageState extends State<LoginPage> {
                             child: SizedBox(
                                 width: 400,
                                 height: 52,
-                                child: ElevatedButton(
-                                    style: ButtonStyle(
-                                        shape: MaterialStateProperty.all<
-                                                RoundedRectangleBorder>(
-                                            RoundedRectangleBorder(
-                                                borderRadius:
-                                                    BorderRadius.circular(
-                                                        8.0))),
-                                        backgroundColor:
-                                            MaterialStateProperty.all<Color>(
-                                                primaryColor)),
-                                    onPressed:
-                                        null, // TODO : Add Login Function
-                                    child: Center(
-                                        child: Text('Masuk',
-                                            style: buttonText))))),
+                                child: MouseRegion(
+                                  onHover: (event) => setState(() {
+                                    _isHovering = true;
+                                  }),
+                                  onExit: (event) => setState(() {
+                                    _isHovering = false;
+                                  }),
+                                  child: ElevatedButton(
+                                      style: ButtonStyle(
+                                          shape: MaterialStateProperty.all<
+                                                  RoundedRectangleBorder>(
+                                              RoundedRectangleBorder(
+                                                  borderRadius: BorderRadius.circular(
+                                                      8.0))),
+                                          backgroundColor:
+                                              MaterialStateProperty.all<Color>(
+                                                  _isHovering
+                                                      ? primaryColor
+                                                          .withOpacity(0.8)
+                                                      : primaryColor)),
+                                      onPressed:
+                                          null, // TODO : Add Login Function
+                                      child: Center(
+                                          child: Text('Masuk', style: buttonText))),
+                                ))),
                         Row(
                             mainAxisAlignment: MainAxisAlignment.center,
                             children: [
@@ -184,30 +216,40 @@ class _LoginPageState extends State<LoginPage> {
                                     width: double.infinity,
                                     child: OutlinedButton(
                                         style: OutlinedButton.styleFrom(
+                                            backgroundColor: _isClicked
+                                                ? secondaryColor
+                                                : null,
                                             shape: RoundedRectangleBorder(
                                                 borderRadius:
                                                     BorderRadius.circular(8.0)),
                                             side: const BorderSide(
                                                 width: 2.0,
                                                 color: secondaryColor)),
-                                        onPressed:
-                                            null, // TODO : Add Google Sign In
+                                        onPressed: () {
+                                          setState(() {
+                                            _isClicked = !_isClicked;
+                                          });
+                                        },
                                         child: Row(
-                                          mainAxisAlignment:
-                                              MainAxisAlignment.center,
-                                          children: [
-                                            SvgPicture.asset(
-                                                'assets/images/Google logo.svg'),
-                                            Padding(
-                                              padding: const EdgeInsets.only(
-                                                  left: 8.0,
-                                                  top: 16.0,
-                                                  bottom: 16),
-                                              child: Text('Masuk dengan Google',
-                                                  style: heading3),
-                                            ),
-                                          ],
-                                        ))))),
+                                            mainAxisAlignment:
+                                                MainAxisAlignment.center,
+                                            children: [
+                                              Image.asset(
+                                                  'assets/images/Google logo.png',
+                                                  width: 24,
+                                                  height: 24),
+                                              Padding(
+                                                  padding:
+                                                      const EdgeInsets.only(
+                                                          left: 8.0,
+                                                          top: 16.0,
+                                                          bottom: 16),
+                                                  child: Text(
+                                                      'Masuk dengan Google',
+                                                      style: _isClicked
+                                                          ? heading3Google
+                                                          : heading3))
+                                            ]))))),
                         Row(
                             mainAxisAlignment: MainAxisAlignment.center,
                             children: [
@@ -219,7 +261,16 @@ class _LoginPageState extends State<LoginPage> {
                                       children: [
                                     TextSpan(
                                         text: 'Daftar Sekarang',
-                                        style: linkText3)
+                                        style: linkText3,
+                                        recognizer: TapGestureRecognizer()
+                                          ..onTap = () {
+                                            Navigator.push(
+                                                context,
+                                                MaterialPageRoute(
+                                                  builder: (context) =>
+                                                      const RegistrationPage(),
+                                                ));
+                                          })
                                   ]))
                             ])
                       ]))))

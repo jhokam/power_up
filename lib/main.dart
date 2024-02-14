@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:powerup/pages/login_page.dart';
-import 'package:powerup/pages/registration_page.dart';
 
 void main() {
   runApp(const MyApp());
@@ -19,6 +18,6 @@ class _MyAppState extends State<MyApp> {
     return MaterialApp(
         darkTheme: ThemeData.dark(),
         debugShowCheckedModeBanner: false,
-        home: const Scaffold(body: RegistrationPage())); // TODO: Change to home
+        home: const Scaffold(body: LoginPage())); // TODO: Change to home
   }
 }

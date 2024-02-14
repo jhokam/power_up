@@ -15,6 +15,9 @@ final TextStyle heading = GoogleFonts.plusJakartaSans(
 final TextStyle heading3 = GoogleFonts.plusJakartaSans(
     textStyle: const TextStyle(
         fontWeight: FontWeight.w500, fontSize: 14.0, color: textColor));
+final TextStyle heading3Google = GoogleFonts.plusJakartaSans(
+    textStyle: const TextStyle(
+        fontWeight: FontWeight.w500, fontSize: 14.0, color: Color(0xff191D24)));
 final TextStyle disableText = GoogleFonts.plusJakartaSans(
     textStyle: const TextStyle(
         fontWeight: FontWeight.w500, fontSize: 14.0, color: disabledColor));

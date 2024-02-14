@@ -12,7 +12,9 @@ In the upcoming phase, "PowerUp" will integrate with Firebase for back-end servi
 
 ## Progression
 
-![Commit 2nd](</github/Screenshot%20(2nd%20Commit).png> "Commit 2nd")
+![Login Page](</github/Screenshot(Login).png> "Login Page")
+![Registration Page](</github/Screenshot(Registration).png> "Registration Page")
+![Forgot Password Page](</github/Screenshot(ForgotPassword).png> "Forgot Password Page")
 
 ## TO-DO
 
